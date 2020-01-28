@@ -1,5 +1,10 @@
 # README
 
+## Specs implementers
+
+zhan.d@husky.neu.edu
+cao.yuan1@husky.neu.edu
+
 ## Content
 
 object.h
@@ -9,14 +14,7 @@ test.cpp
 
 ## Design Choices
 
-We attempted to recreate the behavior of an array with memory access safety.
-Essentially, we tried to design a safer C array.
-
-An array is a memory region that contain a number of objects of the same type.
-Accessing a memory segment without initializing it is usually a undefined
-behavior. We initialize the array members with a value (nullptr). Access an
-index outside of the array is also a undefined behavior, and our design prevents
-the user from doing so.
+Array is a typed resizable array.
 
 We tried to create an Array that can hold any object type. However, we wanted to
 distinguish between different subclasses of Object. So, each object get a type
@@ -35,16 +33,15 @@ here.
 
 ## API
 
-An new array can be created in two different ways. The constructor can be given
-a content type and a length, after which the constructor will create an Array
-object that can hold a number of pointer to the specified object type equal to 
-the length given. All value are initialized to the nullptr. Alternatively, the 
-constructor can be given another Array, after which the constructor will create 
-another copy of the array with the same content type and same length. The value 
-of the contents will be the same, but the content of the new Array must be 
-owned by the new Array.
+A new array can be created in two different ways. The constructor can be given
+a content type, after which the constructor will create an Array
+object that can hold a number of pointer to the specified object type.
+All value are initialized to the nullptr. Alternatively, the
+constructor can be given another Array, after which the constructor will create
+another copy of the array with the same content type and values.
+The values of the new Array must be owned by the new Array.
 
-Array a = new Array("String", 4);  
+Array a = new Array("String");  
 Array b = new Array(a);  
 
 The length of the array can be queried.

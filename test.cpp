@@ -55,8 +55,48 @@ Array* aa1 = new Array("Array", 3);
 
 Array* aa2;
 
+Array* al1;
+
 
 int main(int argc, char** argv) {
+
+	// Tests
+	equality_test();
+	get_fields_test();
+	memory_access_test();
+
+	printf("All test have passed!\n");
+	return 0;
+}
+
+void setup() {
+	c1 = "String";
+	c2 = const_cast<char*>(c1);
+
+	// Objects
+	o1 = new Object();
+	o2 = new Object();
+
+	// Strings
+	s1 = new String();
+	s2 = new String(c1);
+	s3 = new String(c2);
+	s4 = new String(s1);
+	s5 = new String(s2);
+
+	// Arrays
+	ao1 = new Array("Object");
+
+	ao2 = new Array("Object");
+
+	as1 = new Array("String");
+
+	as2 = new Array("String");
+
+	aa1 = new Array("Array");
+
+	aa2 new Array(aa1);
+
 	//setUp and testing set
 	ao1->set(o1, 0);
 
@@ -81,14 +121,10 @@ int main(int argc, char** argv) {
 	aa1->set(as1, 2);
 	aa1->set(as2, 3);
 
-	aa2 = new Array(aa1);
+	al1 = new Array("String");
+}
 
-	// Tests
-	equality_test();
-	get_fields_test();
-	memory_access_test();
-
-
+void teardown() {
 	// tearDown + Destructor Testing
 	delete o1;
 	delete o2;
@@ -103,10 +139,7 @@ int main(int argc, char** argv) {
 	delete as2;
 	delete aa1;
 	delete aa2;
-
-
-	printf("All test have passed!\n");
-	return 0;
+	delete al1;
 }
 
 // Helper Functions
@@ -117,6 +150,7 @@ void t_false(bool p) { if (p) fail(); }
 
 // Test Implementation
 void equality_test () {
+	setup();
 	printf("Started equality testing... ");
 
 	// Object
@@ -137,11 +171,12 @@ void equality_test () {
 	printf("for arrays... ");
 	t_true(ao1->equals(ao1));
 	t_true(aa1->equals(aa2));
-
+	teardown();
 	printf("Passed.\n");
 }
 
 void get_fields_test () {
+	setup();
 	printf("Started get field testing... ");
 
 	// Object
@@ -157,11 +192,11 @@ void get_fields_test () {
 	t_true(strcmp(s4->get_type(), "String") == 0);
 	t_true(strcmp(s5->get_type(), "String") == 0);
 
-	t_true(s1->get_len() == 0); 
-	t_true(s1->get_len() == 6); 
-	t_true(s1->get_len() == 6); 
-	t_true(s1->get_len() == 6); 
-	t_true(s1->get_len() == 6); 
+	t_true(s1->get_len() == 0);
+	t_true(s1->get_len() == 6);
+	t_true(s1->get_len() == 6);
+	t_true(s1->get_len() == 6);
+	t_true(s1->get_len() == 6);
 
 	// Array
 	printf("for arrays... ");
@@ -171,10 +206,10 @@ void get_fields_test () {
 	t_true(strcmp(as2->get_type(), "Array") == 0);
 	t_true(strcmp(aa2->get_type(), "Array") == 0);
 
-	t_true(ao1->get_len() == 1); 
-	t_true(ao2->get_len() == 2); 
-	t_true(as2->get_len() == 4); 
-	t_true(as2->get_len() == 8); 
+	t_true(ao1->get_len() == 1);
+	t_true(ao2->get_len() == 2);
+	t_true(as2->get_len() == 4);
+	t_true(as2->get_len() == 8);
 	t_true(aa2->get_len() == 3);
 
 	t_true(ao1->get(0)->equals(o1));
@@ -187,10 +222,12 @@ void get_fields_test () {
 	t_true(strcmp(as1->get_content_type(), "String") == 0);
 	t_true(strcmp(aa1->get_content_type(), "Array") == 0);
 
+	teardown();
 	printf("Passed.\n");
 }
 
 void memory_access_test () {
+	setup();
 	printf("Started memory access testing... ");
 
 	// Object
@@ -218,5 +255,31 @@ void memory_access_test () {
 	t_false(ao1->get(10));
 	t_false(ao1->set(o1, 1));
 
+	teardown();
 	printf("Passed.\n");
+}
+
+void get_length_test() {
+	setup();
+	t_true(al1.get_len() == 0);
+	al1.add(s1);
+	t_true(al1.get_len() == 1);
+	al1.add(s2);
+	t_true(al2.get_len() == 2);
+	teardown();
+}
+
+void insert_test() {
+	al1.insert(s1, 0);
+	t_true(ali.get(0) == s1);
+	ali.insert(s2, 1);
+	t_true(ali.get(0) == s2);
+	t_true(ali.get(1) == s1);
+}
+
+void add() {
+	ali.add(s1);
+	t_true(ali.get(0) == s1);
+	ali.add(s2);
+	t_true(ali.get(1) == s2);
 }
