@@ -18,17 +18,23 @@
 class Array : public Object {
 
   public:
+
+    /**
+     * Constructs a new empty array.
+     */
+    Array() : Object() {}
+
     /**
      * Constructs a new Array with the given type.
      * The initial values of this Array are initialized to nullptr.
      */
-    Array(const char* content_type) {}
+    Array(const char* content_type) : Object() {}
 
     /**
      * Constructs a new Array with the same type, values, and length
      * as in the given Array a.
      */
-    Array(Array* a) {}
+    Array(Array* a) : Object() {}
 
     /**
      * Default destructor.
