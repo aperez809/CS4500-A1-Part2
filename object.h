@@ -31,6 +31,11 @@ class Object {
     virtual char* get_type() {}
 
     /**
+     * Computes the hash value of this object.
+     */
+    virtual size_t hash() {}
+
+    /**
      * Determines if this Object is equal to the given Object o.
      */
     virtual bool equals(Object* o) {}
