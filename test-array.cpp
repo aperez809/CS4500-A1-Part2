@@ -22,6 +22,9 @@
 void equality_test();
 void get_fields_test();
 void memory_access_test();
+void set_test();
+void insert_test();
+void add_test();
 void t_true( bool );
 void t_false( bool);
 
@@ -50,6 +53,9 @@ int main(int argc, char** argv) {
 	equality_test();
 	get_fields_test();
 	memory_access_test();
+	set_test();
+	insert_test();
+	add_test();
 
 	printf("All test have passed!\n");
 	return 0;
@@ -192,7 +198,7 @@ void insert_test() {
 	printf("Passed.\n");
 }
 
-void add() {
+void add_test() {
 	setup();
 	printf("Started add testing... ");
 
