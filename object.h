@@ -6,10 +6,7 @@
 
 /**
  * Object: represents the superclass from which all objects will extend from.
- *
- * All classes that extend this Object class must set their type to be the name
- * of the class itself in their constructors with the first letter being
- * uppercase and all subsequent letters lowercase.
+ * authors: zhan.d@husky.neu.edu, cao.yuan1@husky.neu.edu
  */
 class Object {
   public:
@@ -24,11 +21,6 @@ class Object {
      * Default desctructor.
      */
     virtual ~Object() {}
-
-    /**
-     * Returns the type of this Object.
-     */
-    virtual char* get_type() {}
 
     /**
      * Computes the hash value of this object.

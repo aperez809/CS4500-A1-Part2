@@ -8,12 +8,7 @@
 
 
 /**
- * Array: represents a resizable array of objects of the same type
- * as the content_type.
- * The content_type of the array is chosen at the construction and only
- * elements that matches the content_type can be stored.
- * In the case that the content_type is Array, then the only guarantee
- * is that the elemenet stored are of type Array.
+ * Array: represents a resizable array of objects.
  */
 class Array : public Object {
 
@@ -23,12 +18,6 @@ class Array : public Object {
      * Constructs a new empty array.
      */
     Array() : Object() {}
-
-    /**
-     * Constructs a new Array with the given type.
-     * The initial values of this Array are initialized to nullptr.
-     */
-    Array(const char* content_type) : Object() {}
 
     /**
      * Constructs a new Array with the same type, values, and length
@@ -45,11 +34,6 @@ class Array : public Object {
      * Returns the length of this Array.
      */
     virtual size_t get_len() {}
-
-    /**
-     * Returns the content type of this Array.
-     */
-    virtual const char* get_content_type() {};
 
     /**
      * Returns the value stored at index i in this Array.
@@ -71,6 +55,7 @@ class Array : public Object {
 
     /**
     * Inserts the given object o at the given index.
+    * If the given i is < 0 or >= than the length, nothing happens.
     */
     virtual void insert(Object* o, size_t index) {}
 
